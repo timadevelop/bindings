@@ -1,6 +1,8 @@
 import React from "react";
-
 import { load } from "../scripts/load.js"
+
+import Popup from 'react-popup'
+import { ErrorPopup } from './popups'
 
 function getFormat(fileName) {
   return fileName.split('.')[1]
@@ -25,14 +27,13 @@ export class FileSelector extends React.Component
            var reader = new FileReader();
            reader.readAsText(file);
            reader.onload = function(e) {
-               // browser completed reading file - display it
-              //  try {
+              //  browser completed reading file - display it
+               try {
                  load(e.target.result, getFormat(file.name));
-              //  } catch (err) {
-                //  alert(err);
-              //  } finally {
-
-              //  }
+                //  Popup.alert("File " + file.name + " is loaded");   
+               } catch (err) {
+                 Popup.queue(ErrorPopup(err.message))
+               }
            };
        }
     }

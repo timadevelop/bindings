@@ -89,7 +89,7 @@ function load (resultString, fileType) {
       // loadCSV(resultString);
       break;
     default:
-      throw new Error("Sorry, " + fileType + " is not supported yet. If you really want to use this format - write me on timadevelop@gmail.com");
+      throw new Error("Sorry, files with type " + fileType + " are not supported yet....");
 
   }
 

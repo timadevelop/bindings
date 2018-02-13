@@ -74,42 +74,46 @@ let contactPopup = Popup.register({
         }
     });
 
-const notImplementedPopup = Popup.register({
-        title: 'Sorry, this feature is Not implemented yet :(',
-        content: "If you really want to use it contact me, contribute or open a new issue on GitHub, so I know which feature you want to use.",
-        buttons: {
-            left: [],
-            right: [
-              {
-                text: 'Contact',
-                className: 'success',
-                action: () => {
-                  Popup.queue(contactPopup);
-                  Popup.close();
+function ErrorPopup(msg) {
+  const str = msg + " If you really want to use it contact me, contribute or open a new issue on GitHub, so I know which feature you want to use."
+  return Popup.register({
+          title: 'Sorry, this feature is Not implemented yet :(',
+          content: str,
+          buttons: {
+              left: [],
+              right: [
+                {
+                  text: 'Contact',
+                  className: 'success',
+                  action: () => {
+                    Popup.queue(contactPopup);
+                    Popup.close();
+                  }
                 }
-              }
-              ,{
-                text: 'Contribute',
-                className: 'middle',
-                action: () => {
-                  openInNewTab('https://github.com/timadevelop/bindings');
-                  Popup.close();
+                ,{
+                  text: 'Contribute',
+                  className: 'middle',
+                  action: () => {
+                    openInNewTab('https://github.com/timadevelop/bindings');
+                    Popup.close();
+                  }
                 }
-              }
-              ,{
-                text: 'New issue',
-                className: 'danger',
-                action: () => {
-                  openInNewTab('https://github.com/timadevelop/bindings/issues');
-                  Popup.close();
+                ,{
+                  text: 'New issue',
+                  className: 'danger',
+                  action: () => {
+                    openInNewTab('https://github.com/timadevelop/bindings/issues');
+                    Popup.close();
+                  }
                 }
-              }
-              ,{
-                text: 'Cancel',
-                action: Popup.close
-              }
-            ]
-        }
-    });
+                ,{
+                  text: 'Cancel',
+                  action: Popup.close
+                }
+              ]
+          }
+      })
+}
 
-export { notImplementedPopup, contactPopup }
+const notImplementedPopup = ErrorPopup("");
+export { notImplementedPopup, contactPopup, ErrorPopup }
