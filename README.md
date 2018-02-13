@@ -1,11 +1,13 @@
-### Bindings
-- gif here
+## Bindings
+[bindings.](#) is a simple ReactJS app.
+It allows you to import, change or export keymap bindings in popular editors as Atom, Sublime Text, vim and other.
 
+__basic usage scenario is:__ import keymap file from popular editor (or JSON key-value), look at key bindings, change some binding, convert it to a JSON representation (to the keymap file for some editor)
 
-### File Formats
----
+## Bindings File Formats
 
-- `.json` - basic JSON forman
+for assuring proper converting use following file formats.
+- `.json` - basic JSON format (You can import/export `.json` file)
 ```json
 [
 {"key":"key1","value":"1"},
@@ -33,8 +35,11 @@ k2,k3
 ]
 ```
 - `.atom` - Atom editor
-```json
-not implemented yet :(
+```cson
+'atom-text-editor':
+	'ctrl+v': 'paste'
+	'ctrl+c': 'copy'
+	'ctrl-f': 'find'
 ```
 
 - `.alias` - bash alias
@@ -47,8 +52,3 @@ not implemented yet :(
 ```
 - `.vs` - Visual Studio
 - `.eclipse` - Eclipse
-
-
----
-BACKLOG file: features need to be implemented
-BUG-BACKLOG: issues and bugs
