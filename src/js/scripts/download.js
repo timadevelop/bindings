@@ -1,12 +1,13 @@
-import {convertToCSV, convertToSublime} from './convert'
+import {convertToCSV, convertToSublime, convertToAtom} from './convert'
 
 function exportCSVFile(headers, items, fileTitle="bindings", as="csv") {
-    if (as !== "json" && as !== "sublime" && headers) {
+    if (as === "csv" && headers) {
         items.unshift(headers);
     }
 
     // Convert Object to JSON
     var jsonObject = JSON.stringify(items);
+    as = (as === 'atom' ? 'cson' : as);
     var exportedFilename = fileTitle + '.' + as;
 
     var blob;
@@ -16,6 +17,10 @@ function exportCSVFile(headers, items, fileTitle="bindings", as="csv") {
         break;
       case "sublime":
         var o = convertToSublime(jsonObject);
+        blob = new Blob([o], { type: 'text;charset=utf-8;' });
+        break;
+      case "cson":
+        var o = convertToAtom(jsonObject);
         blob = new Blob([o], { type: 'text;charset=utf-8;' });
         break;
       default:

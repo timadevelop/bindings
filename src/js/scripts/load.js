@@ -32,10 +32,33 @@ function format(s) {
   return s.replace(/\r/g, '');//.replace(/\r/g, '')
 }
 
+
+// 'atom-text-editor':
+//   'ctrl-alt-l': 'editor:auto-indent'
+// Returns
+function CSONtoJSON(data) {
+  // data.replace(/\'/g, "\"").replace(/\t/g, ", {key: ").replace(/\:/g, ", value: ").
+  let str = data.match(/\t\'([A-Za-z\+\-\:]*)\'\s*\:\s*\'([A-Za-z\-\:]*)\'/g).map(e =>
+    e.replace(/\t\'([A-Za-z\+\-\:]*)\'\s*\:\s*\'([A-Za-z\-\:]*)\'/g, "{\"key\":\"$1\",\"value\":\"$2\"}")
+  ).join(",");
+
+  return '[' + str + ']'
+}
+
+
 function load (resultString, fileType) {
   // getters for (key, value) of bindings for map function
   let getKey = obj => obj.key;
   let getValue = obj => obj.value;
+
+  if(fileType === "cson" || fileType === "atom")
+  {
+    resultString = CSONtoJSON(resultString);
+    fileType = "json";
+    window.resultString = resultString;
+    console.log(resultString);
+    console.log(JSON.parse(resultString));
+  }
 
   switch (fileType) {
     case "json":
@@ -59,8 +82,14 @@ function load (resultString, fileType) {
   // hide import menu
   keyBindingsStore.showImportMenu = !keyBindingsStore.showImportMenu;
 
+
+
+
   // getJSON array from string
-  let arr = fileType === "csv" ? csvJSON(resultString) : JSON.parse(resultString);
+  let arr =
+    fileType === "csv" ? csvJSON(resultString) : JSON.parse(resultString)
+
+  console.log(arr);
   // remove all bindings from list
   keyBindingsStore.clear();
   // push new bindings

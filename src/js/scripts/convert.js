@@ -45,18 +45,17 @@ function convertToSublime(objArray) {
 'atom-text-editor':
   'ctrl-alt-l': 'editor:auto-indent'
 */
-// 
-// function convertAtom(objArray) {
-//     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-//     console.log(array);
-//     const str = array.map(binding =>
-//       '\t{ \"keys\": [\"' + binding.key.replace(/\n/g, "").toLowerCase() + '\"], "command": \"'
-//        + binding.value.replace(/\n/g, "").toLowerCase() + '\" }\r\n'
-//      );
-//
-//      console.log(str);
-//     return "'atom-text-editor':\n" + str + ']';
-// }
+
+function convertToAtom(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    console.log(array);
+    const str = array.map(binding =>
+      "\t\'" + binding.key.replace(/\n/g, "").toLowerCase() + "\': \'"
+       + binding.value.replace(/\n/g, "").toLowerCase() + '\'\r\n'
+     ).join("");
+
+    return "'atom-text-editor':\n" + str;
+}
 
 // vim
 // https://hea-www.harvard.edu/~fine/Tech/vi.html
@@ -69,7 +68,4 @@ function convertToSublime(objArray) {
 // VS
 // eclipse
 
-
-
-
-export {convertToCSV, convertToSublime}
+export {convertToCSV, convertToSublime, convertToAtom}
