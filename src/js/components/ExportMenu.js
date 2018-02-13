@@ -38,7 +38,7 @@ export default class ExportMenu extends React.Component {
         <span className="click btn" onClick={this.downloadBindings.bind(this, "sublime")}>sublime text 3</span>
         <span className="click btn disabled" onClick={this.popup.bind(this)}>vs</span>
         <span className="click btn disabled" onClick={this.popup.bind(this)}>eclipse</span>
-        <span className="click btn disabled" onClick={this.popup.bind(this)}>alias</span>
+        <span className="click btn" onClick={this.downloadBindings.bind(this, "alias")}>alias</span>
         </div>
       </li>
     )

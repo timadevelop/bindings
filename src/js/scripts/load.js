@@ -15,7 +15,7 @@ function csvJSON(csv) {
 	  let currentline=lines[i].split(",");
     // console.log(currentline);
 	  for(let j=0;j<headers.length;j++){
-      console.log(currentline[j]);
+      // console.log(currentline[j]);
 		  obj[headers[j]] = format(currentline[j]);
 	  }
     // console.log(obj);
@@ -36,10 +36,19 @@ function format(s) {
 // 'atom-text-editor':
 //   'ctrl-alt-l': 'editor:auto-indent'
 // Returns
-function CSONtoJSON(data) {
-  // data.replace(/\'/g, "\"").replace(/\t/g, ", {key: ").replace(/\:/g, ", value: ").
-  let str = data.match(/\t\'([A-Za-z\+\-\:]*)\'\s*\:\s*\'([A-Za-z\-\:]*)\'/g).map(e =>
-    e.replace(/\t\'([A-Za-z\+\-\:]*)\'\s*\:\s*\'([A-Za-z\-\:]*)\'/g, "{\"key\":\"$1\",\"value\":\"$2\"}")
+function csonToJSON(data) {
+  let str = data.match(/\t\'([A-Za-z\+\-\:]*)\'\s*\:\s*\'([A-Za-z\-\:\s]*)\'/g).map(e =>
+    e.replace(/\t\'([A-Za-z\+\-\:]*)\'\s*\:\s*\'([A-Za-z\-\:\s]*)\'/g, "{\"key\":\"$1\",\"value\":\"$2\"}")
+  ).join(",");
+
+  return '[' + str + ']'
+}
+
+// alias
+// alias key=('|")cmd('|")
+function aliasToJSON(data) {
+  let str = data.match(/alias\s([A-Za-z\+\-\:\_]*)\s*\=\s*[\'\"]([A-Za-z\-\:\_\s]*)/g).map(e =>
+    e.replace(/alias\s([A-Za-z\+\-\:\_]*)\s*\=\s*[\'\"]([A-Za-z\-\:\_\s]*)/g, "{\"key\":\"$1\",\"value\":\"$2\"}")
   ).join(",");
 
   return '[' + str + ']'
@@ -53,14 +62,19 @@ function load (resultString, fileType) {
 
   if(fileType === "cson" || fileType === "atom")
   {
-    resultString = CSONtoJSON(resultString);
+    resultString = csonToJSON(resultString);
     fileType = "json";
-    window.resultString = resultString;
-    console.log(resultString);
-    console.log(JSON.parse(resultString));
+  }
+  if(fileType === "alias")
+  {
+    resultString = aliasToJSON(resultString);
+    fileType = "json";
   }
 
   switch (fileType) {
+    case "alias":
+
+      break;
     case "json":
       getKey = (obj) => obj.key;
       getValue = (obj) => obj.value;
@@ -89,7 +103,7 @@ function load (resultString, fileType) {
   let arr =
     fileType === "csv" ? csvJSON(resultString) : JSON.parse(resultString)
 
-  console.log(arr);
+  // console.log(arr);
   // remove all bindings from list
   keyBindingsStore.clear();
   // push new bindings

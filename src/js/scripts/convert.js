@@ -29,13 +29,12 @@ function convertToCSV(objArray) {
 */
 function convertToSublime(objArray) {
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    console.log(array);
+    // console.log(array);
     const str = array.map(binding =>
       '\t{ \"keys\": [\"' + binding.key.replace(/\n/g, "").toLowerCase() + '\"], "command": \"'
        + binding.value.replace(/\n/g, "").toLowerCase() + '\" }\r\n'
      );
 
-     console.log(str);
     return '[\r\n' + str + ']';
 }
 
@@ -48,7 +47,6 @@ function convertToSublime(objArray) {
 
 function convertToAtom(objArray) {
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    console.log(array);
     const str = array.map(binding =>
       "\t\'" + binding.key.replace(/\n/g, "").toLowerCase() + "\': \'"
        + binding.value.replace(/\n/g, "").toLowerCase() + '\'\r\n'
@@ -56,6 +54,19 @@ function convertToAtom(objArray) {
 
     return "'atom-text-editor':\n" + str;
 }
+
+// alias
+// alias key=('|")cmd('|")
+function convertToAlias(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    const str = array.map(binding =>
+      "alias " + binding.key.replace(/\n/g, "").toLowerCase() + "=\""
+       + binding.value.replace(/\n/g, "").toLowerCase() + '\"\r\n'
+     ).join("");
+
+    return str;
+}
+
 
 // vim
 // https://hea-www.harvard.edu/~fine/Tech/vi.html
@@ -68,4 +79,4 @@ function convertToAtom(objArray) {
 // VS
 // eclipse
 
-export {convertToCSV, convertToSublime, convertToAtom}
+export {convertToCSV, convertToSublime, convertToAtom, convertToAlias}

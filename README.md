@@ -18,11 +18,12 @@ for assuring proper converting use following file formats.
 - `.csv` - CSV format
 ```csv
 Key,Value
-key1,1
-Ctrl+V,paste
-k2,k3
-131452,23564
-
+g,git
+ga,git add
+gaa,git add --all
+gapa,git add --patch
+gau,git add --update
+gba,git branch -a
 ```
 
 - `.sublime` - Sublime Text 3
@@ -34,7 +35,7 @@ k2,k3
 ,	{ "keys": ["131452"], "command": "23564" }
 ]
 ```
-- `.atom` - Atom editor
+- `.atom` or `.cson` - Atom editor (atom uses CSON)
 ```cson
 'atom-text-editor':
 	'ctrl+v': 'paste'
@@ -43,8 +44,14 @@ k2,k3
 ```
 
 - `.alias` - bash alias
-```
-not implemented yet :(
+```bash
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
+alias gapa='git add --patch'
+alias gau='git add --update'
+alias gap='git apply'
+alias gb='git branch'
 ```
 - `.vim` - vim maps
 ```

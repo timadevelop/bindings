@@ -1,4 +1,4 @@
-import {convertToCSV, convertToSublime, convertToAtom} from './convert'
+import {convertToCSV, convertToSublime, convertToAtom, convertToAlias} from './convert'
 
 function exportCSVFile(headers, items, fileTitle="bindings", as="csv") {
     if (as === "csv" && headers) {
@@ -6,35 +6,39 @@ function exportCSVFile(headers, items, fileTitle="bindings", as="csv") {
     }
 
     // Convert Object to JSON
-    var jsonObject = JSON.stringify(items);
+    let jsonObject = JSON.stringify(items);
     as = (as === 'atom' ? 'cson' : as);
-    var exportedFilename = fileTitle + '.' + as;
+    let exportedFilename = fileTitle + '.' + as;
 
-    var blob;
+    let blob, o;
     switch (as) {
       case "json":
         blob = new Blob([jsonObject], { type: 'text/json;charset=utf-8;' });
         break;
+      case "alias":
+        o = convertToAlias(jsonObject);
+        blob = new Blob([o], { type: 'text;charset=utf-8;' });
+        break;
       case "sublime":
-        var o = convertToSublime(jsonObject);
+        o = convertToSublime(jsonObject);
         blob = new Blob([o], { type: 'text;charset=utf-8;' });
         break;
       case "cson":
-        var o = convertToAtom(jsonObject);
+        o = convertToAtom(jsonObject);
         blob = new Blob([o], { type: 'text;charset=utf-8;' });
         break;
       default:
-        var csv = convertToCSV(jsonObject);
-        blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        o = convertToCSV(jsonObject);
+        blob = new Blob([o], { type: 'text/csv;charset=utf-8;' });
     }
 
     if (navigator.msSaveBlob) { // IE 10+
         navigator.msSaveBlob(blob, exportedFilename);
     } else {
-        var link = document.createElement("a");
+        let link = document.createElement("a");
         if (link.download !== undefined) { // feature detection
             // Browsers that support HTML5 download attribute
-            var url = URL.createObjectURL(blob);
+            let url = URL.createObjectURL(blob);
             link.setAttribute("href", url);
             link.setAttribute("download", exportedFilename);
             link.style.visibility = 'hidden';
@@ -50,11 +54,11 @@ export default function download(itemsNotFormatted, as, fileTitle='bindings'){
   {
     throw new Error("There is nothing to export, add some bindings :)");
   }
-  var headers = {
+  let headers = {
       key: 'Key'.replace(/,/g, ''), // remove commas to avoid errors
       value: "Value".replace(/,/g, ''),
   };
-  var itemsFormatted = [];
+  let itemsFormatted = [];
 
   // format the data
   itemsNotFormatted.forEach((item) => {
