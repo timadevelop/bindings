@@ -1,4 +1,5 @@
 import "../css/main.css"
+import "../css/popup.css"
 import React from "react"
 import ReactDOM from "react-dom"
 import KeyBindingsList from "./KeyBindingsList"

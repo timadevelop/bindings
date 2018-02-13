@@ -7,14 +7,24 @@
     "start": "webpack-dev-server --content-base build --inline --hot",
     "build": "webpack"
   },
-  "keywords": ["sublime", "key", "atom", "bind", "vim", "alias", "bash", "shortcuts"],
+  "keywords": [
+    "sublime",
+    "key",
+    "atom",
+    "bind",
+    "vim",
+    "alias",
+    "bash",
+    "shortcuts"
+  ],
   "author": "timadevelop",
   "license": "GPLv2",
   "dependencies": {
     "mobx": "^2.3.7",
     "mobx-react": "^3.5.1",
     "react": "^15.2.1",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "react-popup": "^0.9.2"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",

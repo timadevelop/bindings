@@ -51,7 +51,7 @@ h1 {
 
 
 
-footer {
+footer#main-footer {
 
     display: flex;
     flex-direction: row;
@@ -127,7 +127,9 @@ input.filter {
   display: inline-block;
 }
 
-.bindingsList > li > div * {
+.left > *,
+.right > *,
+.inlineElements > * {
   margin-right: 15px;
 }
 
