@@ -1,6 +1,6 @@
 // feature - priority
 
-
+- change [a-zA-z\-\_\,] to [^\s]
 - typeform + get emails
 - atom support
 - alias support
