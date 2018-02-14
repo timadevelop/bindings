@@ -1,3 +1,2 @@
 #!/bin/sh
-ls
-cp ./build/* ./docs/
+cp -rf ./build/* ./docs/
