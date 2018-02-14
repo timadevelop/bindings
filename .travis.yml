@@ -9,8 +9,8 @@ script:
   - git clone git://${GH_REPO}
   - cd ${REPO}
   - git remote
-  - git config user.email "travis"
-  - git config user.name "bindings-travis"
+  - git config user.email ${EMAIL}
+  - git config user.name ${USER}
   - mkdir docs
   - cp -rvf ./build/* ./docs/
   - git add .
