@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --content-base build --inline --hot",
-    "build": "webpack"
+    "build": "webpack && bash ./gh-pages.sh"
   },
   "keywords": [
     "sublime",
