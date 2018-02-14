@@ -8,13 +8,12 @@ env:
 script:
   - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
   - git clone git://${GH_REPO}
-  - mv -f ${FILES} ${REPO}
   - cd ${REPO}
   - git remote
   - git config user.email ${EMAIL}
   - git config user.name ${USER}
   - mkdir docs
-  - cp ./build/* ./docs/
+  - cp -rvf ./build/* ./docs/
   - git add .
   - git commit -m ${MESSAGE}
   - git push "https://${TRAVIS_SECURE_TOKEN_NAME}@${GH_REPO}" master > /dev/null 2>&1
