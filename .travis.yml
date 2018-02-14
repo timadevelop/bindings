@@ -1,18 +1,27 @@
+script: bash ./deploy.sh
 env:
   global:
-  - USER="timadevelop"
-  - EMAIL="timadevelop@gmail.com"
-  - REPO="bindings"
-  - GH_REPO="github.com/${USER}/${REPO}.git"
-  - secure: "ci07qBlVDPoR37XjNhuBk5xImKztl4GrQyRI4yLZytCGFv2eQW6dMeTKtcKRzy/5I6N0r9dG5IVvw2ouVZZuUD2dbiKgxKOI1wFACuDQoe59GqO15BJPShCWNF+KZ1VjwmqKi75k8+wPwYyNONXNzjABZQOT7FA8lGo8ANOqtAjUeGjnXwnsYfkGB9zmshSRxAenHPmRDrkomvK7Bx+EU9nBjt9bKVVkzx9F4UGwCOQJmWV5X70zI5Z6s3h6RGIFqN9S2Ptq27D72+2tUEJLJ2KdDFRquiu4k9GcI06CFYwUFhEdaC/TXEv3E90F8T48+XdL78dW5XcOWWR0FC4hlY4BFov/4nnZARWxzzWNyqz2T6ah/GP3B7RTCzmXOes77SBWGxHXTS6Y6/ihzx++Z0x06DTI4BuI1qknBGsdJmAY8QDHm0VuKgrz/ieha4Ao0Cr/P+jZpreM7QCZ8+K3Tinn33HzQfTIW83pCsukf/9rxjFO/vyY5BchpHrXeRX08RGFPqcRe1cGk0pI35+9twSm0H//qfrNadzpguIy2X+b7bwvyqQHFV7cASET4kNM0PUqEgMcLGpTNtHLJUymelQwve2Vx1f2Nm6A1cxOg42MpNirWVSPPrCKalPWr4f+j9EsM63MrsfJrr1eIR3uec9or7qAZz+ZvEseTYIVZfE="
-script:
-  - git clone git://${GH_REPO}
-  - cd ${REPO}
-  - git remote
-  - git config user.email ${EMAIL}
-  - git config user.name ${USER}
-  - mkdir docs
-  - cp -rvf ./build/* ./docs/
-  - git add .
-  - git commit -m "deployed github pages"
-  - git push --force --quiet "https://justbindings@${GH_REPO}" master 
+  - ENCRYPTION_LABEL: justbindings
+  - COMMIT_AUTHOR_EMAIL: "timadevelop@gmail.com"
+language: node_js
+node_js:
+  - stable
+
+# env:
+#  global:
+#  - USER="timadevelop"
+#  - EMAIL="timadevelop@gmail.com"
+#  - REPO="bindings"
+#  - GH_REPO="github.com/${USER}/${REPO}.git"
+#  - secure: "ci07qBlVDPoR37XjNhuBk5xImKztl4GrQyRI4yLZytCGFv2eQW6dMeTKtcKRzy/5I6N0r9dG5IVvw2ouVZZuUD2dbiKgxKOI1wFACuDQoe59GqO15BJPShCWNF+KZ1VjwmqKi75k8+wPwYyNONXNzjABZQOT7FA8lGo8ANOqtAjUeGjnXwnsYfkGB9zmshSRxAenHPmRDrkomvK7Bx+EU9nBjt9bKVVkzx9F4UGwCOQJmWV5X70zI5Z6s3h6RGIFqN9S2Ptq27D72+2tUEJLJ2KdDFRquiu4k9GcI06CFYwUFhEdaC/TXEv3E90F8T48+XdL78dW5XcOWWR0FC4hlY4BFov/4nnZARWxzzWNyqz2T6ah/GP3B7RTCzmXOes77SBWGxHXTS6Y6/ihzx++Z0x06DTI4BuI1qknBGsdJmAY8QDHm0VuKgrz/ieha4Ao0Cr/P+jZpreM7QCZ8+K3Tinn33HzQfTIW83pCsukf/9rxjFO/vyY5BchpHrXeRX08RGFPqcRe1cGk0pI35+9twSm0H//qfrNadzpguIy2X+b7bwvyqQHFV7cASET4kNM0PUqEgMcLGpTNtHLJUymelQwve2Vx1f2Nm6A1cxOg42MpNirWVSPPrCKalPWr4f+j9EsM63MrsfJrr1eIR3uec9or7qAZz+ZvEseTYIVZfE="
+#script:
+#  - git clone git://${GH_REPO}
+#  - cd ${REPO}
+#  - git remote
+#  - git config user.email ${EMAIL}
+#  - git config user.name ${USER}
+#  - mkdir docs
+#  - cp -rvf ./build/* ./docs/
+#  - git add .
+#  - git commit -m "deployed github pages"
+#  - git push --force --quiet "https://justbindings@${GH_REPO}" master 
