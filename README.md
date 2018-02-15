@@ -4,6 +4,8 @@ It allows you to import, change or export keymap bindings in popular editors as 
 
 __basic usage scenario is:__ import keymap file from popular editor (or JSON key-value), look at key bindings, change some binding, convert it to a JSON representation (to the keymap file for some editor)
 
+![in action](./samples/bindings.gif)
+
 ## Bindings File Formats
 
 for assuring proper converting use following file formats.
