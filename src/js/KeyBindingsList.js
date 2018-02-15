@@ -36,6 +36,11 @@ export default class KeyBindingsList extends React.Component {
     this.props.store.clearById(id)
   }
 
+  clearAll()
+  {
+    this.props.store.clear();
+  }
+
   toogleExportMenu () {
     // this.setState({showExportMenu: !this.state.showExportMenu})
     this.props.store.showExportMenu = !this.props.store.showExportMenu;
@@ -77,6 +82,7 @@ export default class KeyBindingsList extends React.Component {
             <span className="click btn" onClick={this.toogleExportMenu.bind(this)}>export</span>
             <span className="click btn" onClick={this.toogleImportMenu.bind(this)}>import</span>
             <span className="click btn" onClick={this.props.store.uniquify}>uniquify</span>
+            <span className="click btn" onClick={this.clearAll.bind(this)}>clear</span>
             {/*<a target="_blank" href="https://gist.github.com/timadevelop/a908bc3b1ad294bea618e554b59aa074"
               className="click btn">help</a>
               */}
