@@ -1,12 +1,12 @@
-// feature - priority
-
-- change [a-zA-z\-\_\,] to [^\s]
+- change regexpr [a-zA-z\-\_\,] to [^\s]
 - typeform + get emails
+- maxLenght in fields
+- share using gist ?
+
+// done 
 - atom support
 - alias support
-- maxLenght in fields
-- og keywords and media
-- vim support ?
-
-// made 
 - refresh page https://www.robinwieruch.de/local-storage-react/
+- og keywords and media
+- saving state to browser cache
+- fixed bug with "export to csv -> load csv -> export sublime is bad :( -> import sublime does not work"
