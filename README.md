@@ -2,7 +2,7 @@
 [bindings.](https://timadevelop.github.io/bindings/) is a simple ReactJS app.
 It allows you to import, change or export keymap bindings in popular editors as Atom, Sublime Text, vim and other.
 
-__basic usage scenario is:__ import keymap file from popular editor (or JSON key-value), look at key bindings, change some binding, convert it to a JSON representation (to the keymap file for some editor)
+__basic usage scenario is:__ import keymap file from popular editor (or `csv/json` key-value), look at key bindings, change some binding, convert it to a other representation (atom/vim/sublime or alias)
 
 ![in action](./samples/bindings.gif)
 
