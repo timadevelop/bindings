@@ -5,7 +5,7 @@ It allows you to import, change or export keymap bindings in popular editors as 
 
 Convert `csv` or `json` files to `alias` or other formats.
 
-__basic usage scenario is:__ import keymap file from popular editor (or `csv/json` key-value), look at key bindings, change some binding, convert it to a other representation (atom/vim/sublime or alias)
+__basic usage scenario is:__ import keymap from `csv/json` key-value file, look at key bindings, change some of them and convert it to other representation (atom/vim/sublime or alias)
 
 ![in action](./samples/bindings.gif)
 
